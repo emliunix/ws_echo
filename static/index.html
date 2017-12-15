@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .red::before {
+            display: inline;
+            content: "connecting";
+        }
+        .ok {
+            color: green;
+        }
+        .ok::before {
+            display: inline;
+            content: "connected";
+        }
+        .date {
+            font-size: small;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Messages (<span id="status" class="red"></span>)</h1>
+    <div id="msgs">
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>
