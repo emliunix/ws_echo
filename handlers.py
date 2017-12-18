@@ -32,6 +32,7 @@ async def ws_conn(request):
     if not exception_exit:
         await ws.close()
     print("closed[{}] {:.3f}s".format(session_id, time.time()))
+    return ws
 
 
 async def webhook_input(request):
