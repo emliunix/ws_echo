@@ -10,10 +10,8 @@ async def ws_conn(request):
     await ws.prepare(request)
 
     session_id = add_session(ws)
-    print("connected[{}] ".format(session_id))
+    print("connected[{}] @ {:.3f}s".format(session_id, time.time()))
     start_time = time.time()
-
-    exception_exit = False
 
     async for msg in ws:
         if msg.type == WSMsgType.TEXT:
@@ -29,9 +27,15 @@ async def ws_conn(request):
                       ws.exception()
                   ))
     del_session(session_id)
-    if not exception_exit:
-        await ws.close()
-    print("closed[{}] {:.3f}s".format(session_id, time.time()))
+    await ws.close()
+
+    stop_time = time.time()
+    print("closed[{}] @ {:.3f}s total {:.3f}s".format(
+        session_id,
+        stop_time,
+        stop_time - start_time,
+    ))
+
     return ws
 
 
